@@ -1,13 +1,12 @@
-function CalculateGCD(denominator, numerator) {
-  return denominator % numerator
-    ? CalculateGCD(numerator, denominator % numerator)
-    : numerator;
+const findGreatestCommonDivisor = (a, b) => {
+    return b ? findGreatestCommonDivisor(b, a % b) : a;
 }
 
-function solution(denum1, num1, denum2, num2) {
-  const denominator = num1 * denum2 + num2 * denum1;
-  const numerator = num1 * num2;
-  const GCD = CalculateGCD(denominator, numerator);
+const solution = (numerator1, denominator1, numerator2, denominator2) => {
+    const totalNumerator = numerator1 * denominator2 + numerator2 * denominator1;
+    const totalDenominator = denominator1 * denominator2;
 
-  return [denominator / GCD, numerator / GCD];
+    const commonDivisor = findGreatestCommonDivisor(totalNumerator, totalDenominator);
+
+    return [totalNumerator / commonDivisor, totalDenominator / commonDivisor];
 }
