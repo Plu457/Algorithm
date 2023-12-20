@@ -24,19 +24,15 @@ const reverseBrackets = (str) => {
 };
 
 // 주어진 문자열을 올바른 괄호 문자열로 변환
-const transform = (str) => {
+const solution = (str) => {
     if (str === '') return '';
     const index = findBalancedIndex(str);
     const u = str.substring(0, index + 1);
     const v = str.substring(index + 1);
 
     if (isCorrect(u)) {
-        return u + transform(v);
+        return u + solution(v);
     } else {
-        return '(' + transform(v) + ')' + reverseBrackets(u.slice(1, -1));
+        return '(' + solution(v) + ')' + reverseBrackets(u.slice(1, -1));
     }
-};
-
-const solution = (p) => {
-    return transform(p);
 };
